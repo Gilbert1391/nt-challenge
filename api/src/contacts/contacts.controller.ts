@@ -9,7 +9,7 @@ import {
   Param,
   HttpCode,
 } from '@nestjs/common';
-import { ContactsService } from './contacts.service';
+import { ContactsService, IApiResponse } from './contacts.service';
 import { IContact } from './schemas/contact.chema';
 import { UpdateContactDto } from './dtos/updateContact.dto';
 
@@ -18,8 +18,11 @@ export class ContactsController {
   constructor(private contactsService: ContactsService) {}
 
   @Get()
-  getContacts(): Promise<IContact[]> {
-    return this.contactsService.getContacts();
+  async getContacts(): Promise<IApiResponse> {
+    const result = await this.contactsService.getContacts();
+    const total = result.length;
+
+    return { result, total };
   }
 
   @Get('/:id')
