@@ -1,0 +1,89 @@
+<div class="container p-4">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="First name"
+        formControlName="firstName"
+      />
+      <small
+        class="form-text text-danger"
+        *ngIf="firstName.invalid && firstName.touched"
+      >
+        <ng-container *ngIf="firstName.errors.required">
+          First name is required
+        </ng-container>
+        <ng-container *ngIf="firstName.errors.minlength">
+          First name should be at least
+          {{ firstName.errors.minlength.requiredLength }} characters long
+        </ng-container>
+        <ng-container *ngIf="firstName.errors.maxlength">
+          First name can't exceed
+          {{ firstName.errors.maxlength.requiredLength }} characters long
+        </ng-container>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        placeholder="Last name"
+        formControlName="lastName"
+      />
+      <small
+        class="form-text text-danger"
+        *ngIf="lastName.invalid && lastName.touched"
+      >
+        <ng-container *ngIf="lastName.errors.required">
+          Last name is required
+        </ng-container>
+        <ng-container *ngIf="lastName.errors.minlength">
+          Last name should be at least
+          {{ lastName.errors.minlength.requiredLength }} characters long
+        </ng-container>
+        <ng-container *ngIf="lastName.errors.maxlength">
+          Last name can't exceed
+          {{ lastName.errors.maxlength.requiredLength }} characters long
+        </ng-container>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phoneNumber"
+        placeholder="Phone number"
+        formControlName="phoneNumber"
+      />
+      <small
+        class="form-text text-danger"
+        *ngIf="phoneNumber.invalid && phoneNumber.touched"
+      >
+        <ng-container *ngIf="phoneNumber.errors.required">
+          Phone number is required
+        </ng-container>
+        <ng-container *ngIf="phoneNumber.errors.minlength">
+          Phone number should be at least
+          {{ phoneNumber.errors.minlength.requiredLength }} characters long
+        </ng-container>
+        <ng-container *ngIf="phoneNumber.errors.maxlength">
+          Phone number should be at least
+          {{ phoneNumber.errors.maxlength.requiredLength }} characters long
+        </ng-container>
+      </small>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!contactForm.valid"
+    >
+      Save
+    </button>
+  </form>
+</div>
