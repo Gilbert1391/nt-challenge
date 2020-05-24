@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  BadRequestException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IContact } from './schemas/contact.chema';
@@ -45,4 +41,9 @@ export class ContactsService {
     const contact = await this.getContactById(id);
     await this.contactModel.deleteOne(contact);
   }
+}
+
+export interface IApiResponse {
+  result: IContact[];
+  total: number;
 }
