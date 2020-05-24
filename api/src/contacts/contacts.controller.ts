@@ -3,11 +3,11 @@ import {
   Controller,
   Get,
   Post,
-  Patch,
   Delete,
   Body,
   Param,
   HttpCode,
+  Put,
 } from '@nestjs/common';
 import { ContactsService, IApiResponse } from './contacts.service';
 import { IContact } from './schemas/contact.chema';
@@ -35,13 +35,13 @@ export class ContactsController {
     return this.contactsService.createContact(contactDto);
   }
 
-  @Patch('/:id')
+  @Put('/:id')
   @HttpCode(204)
   updateContact(
     @Param('id') id: string,
-    @Body() updateContactDto: UpdateContactDto,
+    @Body() contactDto: ContactDto,
   ): Promise<void> {
-    return this.contactsService.updateContact(id, updateContactDto);
+    return this.contactsService.updateContact(id, contactDto);
   }
 
   @Delete('/:id')
