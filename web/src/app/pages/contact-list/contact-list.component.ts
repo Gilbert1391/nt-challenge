@@ -11,6 +11,7 @@ import {
 })
 export class ContactListComponent implements OnInit {
   contacts: IContact[];
+  searchTerm: string;
 
   constructor(private contactService: ContactService) {}
 
