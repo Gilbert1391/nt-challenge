@@ -13,8 +13,8 @@ export class NewContactComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(form: FormGroup) {
-    const { firstName, lastName, phoneNumber } = form.value;
+  onSubmit(eventForm: FormGroup) {
+    const { firstName, lastName, phoneNumber } = eventForm.value;
     this.contactService
       .createContact({ firstName, lastName, phone: phoneNumber })
       .subscribe(() => this.router.navigateByUrl(""));

@@ -19,17 +19,17 @@ export class EditContactComponent implements OnInit {
 
   ngOnInit() {}
 
-  populateForm(form: FormGroup) {
+  onPopulateForm(eventForm: FormGroup) {
     this.route.params.subscribe((param) => (this.contactId = param.id));
 
     this.contactService.getContactById(this.contactId).subscribe((response) => {
       const { firstName, lastName, phone } = response;
-      form.patchValue({ firstName, lastName, phoneNumber: phone });
+      eventForm.patchValue({ firstName, lastName, phoneNumber: phone });
     });
   }
 
-  onSubmit(form: FormGroup) {
-    const { firstName, lastName, phoneNumber } = form.value;
+  onSubmit(eventForm: FormGroup) {
+    const { firstName, lastName, phoneNumber } = eventForm.value;
 
     this.contactService
       .updateContact(this.contactId, {
