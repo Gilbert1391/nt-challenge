@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose';
 
 export const ContactSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  phone: { type: String, required: true },
+  firstName: { type: String, required: true, minlength: 3, maxlength: 20 },
+  lastName: { type: String, required: true, minlength: 3, maxlength: 20 },
+  phone: { type: String, required: true, minlength: 10, maxlength: 10 },
 });
 
 export interface IContact extends mongoose.Document {

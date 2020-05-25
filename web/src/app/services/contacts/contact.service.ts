@@ -35,7 +35,7 @@ export interface IApiResponse {
 }
 
 export interface IContact {
-  _id: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   phone: string;

@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { ContactsService, IApiResponse } from './contacts.service';
 import { IContact } from './schemas/contact.chema';
-import { UpdateContactDto } from './dtos/updateContact.dto';
 
 @Controller('contacts')
 export class ContactsController {
