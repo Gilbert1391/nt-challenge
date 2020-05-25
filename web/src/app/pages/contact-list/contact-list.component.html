@@ -10,7 +10,11 @@
         />
       </div>
       <div class="col">
-        <button type="button" class="btn btn-success btn-block">
+        <button
+          type="button"
+          class="btn btn-success btn-block"
+          [routerLink]="['/new-contact']"
+        >
           Add contact
         </button>
       </div>
@@ -22,7 +26,10 @@
             class="list-group-item d-flex align-items-center justify-content-between"
             *ngFor="let contact of contacts"
           >
-            {{ contact.firstName }} {{ contact.lastName }}
+            <div>
+              {{ contact.firstName }} {{ contact.lastName }}
+              <p class="mb-0">{{ contact.phone }}</p>
+            </div>
             <div>
               <button
                 type="button"
@@ -31,7 +38,11 @@
               >
                 Edit
               </button>
-              <button type="button" class="btn btn-danger">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteContact(contact)"
+              >
                 Delete
               </button>
             </div>

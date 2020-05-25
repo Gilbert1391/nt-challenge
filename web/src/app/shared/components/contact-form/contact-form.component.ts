@@ -1,7 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ContactService } from "../../services/contacts/contact.service";
 
 @Component({
   selector: "app-contact-form",
@@ -9,7 +7,8 @@ import { ContactService } from "../../services/contacts/contact.service";
   styleUrls: ["./contact-form.component.scss"],
 })
 export class ContactFormComponent implements OnInit {
-  contactId: string;
+  @Output() handleSubmit = new EventEmitter();
+  @Output() handlePopulateForm = new EventEmitter();
 
   contactForm = new FormGroup({
     firstName: new FormControl("", [
@@ -29,30 +28,14 @@ export class ContactFormComponent implements OnInit {
     ]),
   });
 
-  constructor(
-    private contactService: ContactService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.route.params.subscribe((param) => (this.contactId = param.id));
-
-    this.contactService.getContactById(this.contactId).subscribe((response) => {
-      const { firstName, lastName, phone } = response;
-      this.contactForm.patchValue({ firstName, lastName, phoneNumber: phone });
-    });
+    this.handlePopulateForm.emit(this.contactForm);
   }
 
-  onSubmit(): void {
-    const { firstName, lastName, phoneNumber } = this.contactForm.value;
-    this.contactService
-      .updateContact(this.contactId, {
-        firstName,
-        lastName,
-        phone: phoneNumber,
-      })
-      .subscribe(() => this.router.navigateByUrl(""));
+  onSubmit() {
+    this.handleSubmit.emit(this.contactForm);
   }
 
   get firstName() {

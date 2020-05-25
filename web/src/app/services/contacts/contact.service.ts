@@ -16,8 +16,16 @@ export class ContactService {
     return this.http.get<IContact>(`http://localhost:3000/contacts/${id}`);
   }
 
+  createContact(contact: IContact): Observable<IContact> {
+    return this.http.post<IContact>("http://localhost:3000/contacts", contact);
+  }
+
   updateContact(id: string, contact: IContact): Observable<void> {
     return this.http.put<void>(`http://localhost:3000/contacts/${id}`, contact);
+  }
+
+  deleteContact(id: string): Observable<void> {
+    return this.http.delete<void>(`http://localhost:3000/contacts/${id}`);
   }
 }
 
@@ -27,6 +35,7 @@ export interface IApiResponse {
 }
 
 export interface IContact {
+  _id: string;
   firstName: string;
   lastName: string;
   phone: string;

@@ -6,11 +6,19 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { ContactService } from "./services/contacts/contact.service";
-import { ContactFormComponent } from "./pages/contact-form/contact-form.component";
 import { ContactListComponent } from "./pages/contact-list/contact-list.component";
+import { NewContactComponent } from "./pages/new-contact/new-contact.component";
+import { EditContactComponent } from "./pages/edit-contact/edit-contact.component";
+import { ContactFormComponent } from "./shared/components/contact-form/contact-form.component";
 
 @NgModule({
-  declarations: [AppComponent, ContactFormComponent, ContactListComponent],
+  declarations: [
+    AppComponent,
+    ContactListComponent,
+    NewContactComponent,
+    EditContactComponent,
+    ContactFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
