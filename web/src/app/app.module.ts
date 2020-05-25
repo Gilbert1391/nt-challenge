@@ -1,8 +1,11 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { ToastrModule } from "ngx-toastr";
 
 import { AppComponent } from "./app.component";
 import { ContactService } from "./services/contacts/contact.service";
@@ -12,6 +15,7 @@ import { EditContactComponent } from "./pages/edit-contact/edit-contact.componen
 import { ContactFormComponent } from "./shared/components/contact-form/contact-form.component";
 import { ContactFilterPipe } from "./pages/contact-list/contact-filter.pipe";
 import { PhoneFormatterPipe } from "./shared/pipes/phone-formatter.pipe";
+import { HttpErrorInterceptor } from "./interceptors/http-error.interceptor";
 
 @NgModule({
   declarations: [
@@ -29,8 +33,13 @@ import { PhoneFormatterPipe } from "./shared/pipes/phone-formatter.pipe";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [ContactService],
+  providers: [
+    ContactService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
