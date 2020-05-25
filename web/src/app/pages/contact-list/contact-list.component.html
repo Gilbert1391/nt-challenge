@@ -22,7 +22,7 @@
     </div>
     <div class="row pt-4">
       <div class="col">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" *ngIf="contacts; else loading">
           <li
             class="list-group-item d-flex align-items-center justify-content-between"
             *ngFor="let contact of contacts | contactFilter: searchTerm"
@@ -53,3 +53,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="loading-container">
+    Loading...
+  </div>
+</ng-template>
