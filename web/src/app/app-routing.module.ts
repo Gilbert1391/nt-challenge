@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ContactFormComponent } from "./pages/contact-form/contact-form.component";
 import { ContactListComponent } from "./pages/contact-list/contact-list.component";
+import { NewContactComponent } from "./pages/new-contact/new-contact.component";
+import { EditContactComponent } from "./pages/edit-contact/edit-contact.component";
 
 const routes: Routes = [
   {
@@ -9,8 +10,12 @@ const routes: Routes = [
     component: ContactListComponent,
   },
   {
+    path: "new-contact",
+    component: NewContactComponent,
+  },
+  {
     path: "contact/:id",
-    component: ContactFormComponent,
+    component: EditContactComponent,
   },
 ];
 

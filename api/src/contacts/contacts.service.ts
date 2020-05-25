@@ -9,7 +9,10 @@ export class ContactsService {
   constructor(@InjectModel('Contact') private contactModel: Model<IContact>) {}
 
   async getContacts(): Promise<IContact[]> {
-    return await this.contactModel.find().exec();
+    return await this.contactModel
+      .find()
+      .select('-__v')
+      .exec();
   }
 
   async getContactById(id: string): Promise<IContact> {
