@@ -7,29 +7,35 @@ import { environment } from "../../../environments/environment";
   providedIn: "root",
 })
 export class ContactService {
-  apiUrl = environment.apiUrl;
+  apiBaseUrl = environment.apiBaseUrl;
   apiRoute = "/contacts/";
 
   constructor(private http: HttpClient) {}
 
   getContacts(): Observable<IApiResponse> {
-    return this.http.get<IApiResponse>(`${this.apiUrl}${this.apiRoute}`);
+    return this.http.get<IApiResponse>(`${this.apiBaseUrl}${this.apiRoute}`);
   }
 
   getContactById(id: string): Observable<IContact> {
-    return this.http.get<IContact>(`${this.apiUrl}${this.apiRoute}${id}`);
+    return this.http.get<IContact>(`${this.apiBaseUrl}${this.apiRoute}${id}`);
   }
 
   createContact(contact: IContact): Observable<IContact> {
-    return this.http.post<IContact>(`${this.apiUrl}${this.apiRoute}`, contact);
+    return this.http.post<IContact>(
+      `${this.apiBaseUrl}${this.apiRoute}`,
+      contact
+    );
   }
 
   updateContact(id: string, contact: IContact): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}${this.apiRoute}${id}`, contact);
+    return this.http.put<void>(
+      `${this.apiBaseUrl}${this.apiRoute}${id}`,
+      contact
+    );
   }
 
   deleteContact(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}${this.apiRoute}${id}`);
+    return this.http.delete<void>(`${this.apiBaseUrl}${this.apiRoute}${id}`);
   }
 }
 
